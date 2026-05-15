@@ -25,7 +25,9 @@ class LWWRegister:
         if self.current is None:
             self.current = other.current
             return
+        # Mission starter bug: equal timestamps use local list order instead
+        # of the deterministic node-id tie breaker.
         self.current = max(
             [self.current, other.current],
-            key=lambda item: (item.timestamp, item.node_id),
+            key=lambda item: item.timestamp,
         )
