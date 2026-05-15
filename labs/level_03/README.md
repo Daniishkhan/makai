@@ -36,10 +36,11 @@ Run `uv run sdl-db workload --iterations 50`, then compare shop checkout rows, i
 
 ## Definition of Done
 
-- [ ] I can explain the difference between duplicate request and duplicate effect.
-- [ ] I can show where the cached response is stored.
-- [ ] I can explain why outbox writes belong near shop checkout state.
-- [ ] I can describe what a consumer must do under at-least-once delivery.
+- [ ] I traced idempotency, outbox, queue, and retry code from tests to implementation.
+- [ ] I can diagram the checkout lifecycle: request key, fingerprint, in-progress lock, completed response, outbox row, queue delivery.
+- [ ] I can explain the difference between duplicate request, duplicate business effect, and duplicate message delivery.
+- [ ] I can show where the cached response and dispatch evidence are stored.
+- [ ] I can name remaining risks: lock expiry, long-running handlers, poisoned messages, downstream side effects, and retry storms.
 - [ ] I ran `uv run python -m pytest labs/level_03/tests`.
 
 ## Your write-up

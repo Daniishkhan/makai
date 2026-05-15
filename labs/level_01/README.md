@@ -34,10 +34,11 @@ Run `uv run sdl-db workload --iterations 50`, then compare `SUM(balance_cents)` 
 
 ## Definition of Done
 
-- [ ] I can reproduce the naive partial-write failure.
-- [ ] I can name the invariant that must survive a coin-pouch transfer.
-- [ ] I used a debugger, failing test, or SQL query as evidence.
-- [ ] I can explain why rollback fixes partial writes but not all concurrency issues.
+- [ ] I traced `naive_transfer_without_transaction` and `transfer` against the tests.
+- [ ] I can diagram the debit, credit, transfer row, ledger rows, transaction boundary, and crash window.
+- [ ] I can name the money-conservation invariant and point to balance or ledger evidence.
+- [ ] I can explain how rollback restores atomicity after a crash or insufficient funds.
+- [ ] I can name what this fix does not solve, especially broader isolation or concurrent-write anomalies.
 - [ ] I ran `uv run python -m pytest labs/level_01/tests`.
 
 ## Your write-up

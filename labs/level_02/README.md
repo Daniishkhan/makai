@@ -35,10 +35,11 @@ Run `uv run sdl-db workload --iterations 50`, then inspect `makai_level_02.reser
 
 ## Definition of Done
 
-- [ ] I can draw the resource boundary between gate run, slot, reservation, and shop checkout.
-- [ ] I can explain which uniqueness rule protects a gate slot.
-- [ ] I can reproduce a contention case and identify the single winner.
-- [ ] I can explain why an application-level check is weaker than a database constraint.
+- [ ] I traced the resource model in `GateReservationStore` and the contention model in `Account`.
+- [ ] I can diagram the boundary between adventurer, gate run, passage slot, reservation, and checkout.
+- [ ] I can identify the state that grants ownership and the uniqueness rule that protects a gate slot.
+- [ ] I can reproduce the contention case, name the single winner, and explain why the loser must not mutate state.
+- [ ] I can explain why API shape and application checks still need database constraints or isolation under pressure.
 - [ ] I ran `uv run python -m pytest labs/level_02/tests`.
 
 ## Your write-up

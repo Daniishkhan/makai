@@ -37,10 +37,12 @@ Run `uv run sdl-db workload --iterations 50`, then inspect cache rows, shard row
 
 ## Definition of Done
 
-- [ ] I can explain what happens when the gate-map cache expires under load.
-- [ ] I can calculate why adding a modulo shard moves many keys.
-- [ ] I can explain Bloom filter false positives without treating them as corruption.
-- [ ] I can choose between token bucket, leaky bucket, and bounded queue for a gate-run path.
+- [ ] I traced cache-aside, request coalescing, LRU, sharding, Bloom filter, rate limiter, and bounded queue tests.
+- [ ] I can diagram the hot gate-map read path and mark where load is shaped before it reaches source-of-truth state.
+- [ ] I can explain what happens when the cache expires under load and how coalescing changes backend pressure.
+- [ ] I can compare modulo sharding with consistent hashing using movement evidence from the tests.
+- [ ] I can explain Bloom filter false positives and rate-limit decisions without treating them as correctness mechanisms.
+- [ ] I can choose between token bucket, leaky bucket, and bounded queue for a specific gate-run pressure case.
 - [ ] I ran `uv run python -m pytest labs/level_04/tests`.
 
 ## Your write-up

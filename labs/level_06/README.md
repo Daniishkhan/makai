@@ -40,10 +40,13 @@ After the workload, verify six Makai schemas exist, no legacy schemas remain, po
 
 ## Definition of Done
 
-- [ ] I can rebuild the local database from scratch.
-- [ ] I can point to workload evidence across ledger, reservations, shop checkout, cache, mirror replica, and final-tower drills.
-- [ ] I can explain LSM compaction using Makai write pressure.
-- [ ] I can explain why Raft needs a majority for a committed rescue-control decision.
+- [ ] I rebuilt the local database with reset, migrate, seed, workload, and status commands.
+- [ ] I traced `sdl-db` runner behavior, the in-memory workload, MiniLSM, and ToyRaft from tests to implementation.
+- [ ] I can diagram the full gate-run day across ledger, reservation, checkout, outbox, queue, cache, shard, replica, and final-tower state.
+- [ ] I can point to workload evidence that schemas exist, legacy schemas are gone, pouch totals survived, and async rows were produced.
+- [ ] I can explain LSM compaction using Makai write pressure and name the read/write trade-off.
+- [ ] I can explain why Raft needs a majority for a committed rescue-control decision and what minority acknowledgement leaves unresolved.
+- [ ] I can write a final incident note naming what degraded first, what protected correctness, and what I would monitor next.
 - [ ] I ran `uv run python -m pytest labs/level_06/tests`.
 
 ## Your write-up

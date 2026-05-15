@@ -38,10 +38,12 @@ Run `uv run sdl-db workload --iterations 50`, then inspect replica lag and confl
 
 ## Definition of Done
 
-- [ ] I can explain when a stale replica read is acceptable.
-- [ ] I can detect when two updates are concurrent instead of older/newer.
-- [ ] I can explain why some counters merge safely and gate ownership does not.
-- [ ] I can describe how the circuit breaker protects the caller.
+- [ ] I traced primary/replica lag, last-write-wins, vector clocks, CRDT counters, and circuit breaker tests.
+- [ ] I can diagram a primary write, pending replica visibility, stale read, and failover consequence.
+- [ ] I can decide which Makai paths tolerate stale reads and which must read primary or coordinate.
+- [ ] I can detect concurrent updates and explain why last-write-wins can lose data.
+- [ ] I can separate mergeable counters from exclusive ownership state such as gate claims.
+- [ ] I can describe the circuit breaker states, the evidence that trips it, and the fallback question it does not answer.
 - [ ] I ran `uv run python -m pytest labs/level_05/tests`.
 
 ## Your write-up
