@@ -44,7 +44,9 @@ class GateReservationStore:
     _reserved_gates: dict[str, str] = field(default_factory=dict)
 
     def create_user(self, user_id: str, email: str) -> User:
-        normalized = email.lower()
+        # Mission starter bug: email identity is stored exactly as provided,
+        # so casing can create duplicate Gatehouse users.
+        normalized = email
         if normalized in self._emails:
             raise DuplicateEmail(email)
         user = User(user_id, normalized)
