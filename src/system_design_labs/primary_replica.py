@@ -13,7 +13,9 @@ class PrimaryReplicaStore:
     def write(self, key: str, value: str) -> None:
         self.primary[key] = value
         if self.synchronous:
-            self.replica[key] = value
+            # Mission starter bug: synchronous writes should be visible on the
+            # replica before returning.
+            self._pending.append((key, value))
         else:
             self._pending.append((key, value))
 
