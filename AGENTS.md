@@ -2,26 +2,30 @@
 
 ## Repo Purpose
 
-Makai System Design Labs is a reading-first senior engineering practice repo. The goal is to help learners read unfamiliar working code, trace state transitions, draw useful diagrams, diagnose failures, and explain system-design trade-offs. Do not treat this as a fill-in-the-blank kata unless the user explicitly asks for that mode.
+Makai System Design Labs is a reading-first senior engineering practice repo. The goal is to help learners read unfamiliar working code, trace state transitions, draw useful diagrams, diagnose failures, repair implementation bugs, and explain system-design trade-offs. Do not treat this as a fill-in-the-blank kata unless the user explicitly asks for that mode.
 
-The tests are expected to pass. Treat a green test as a completed incident file, not as proof that there is nothing to diagnose. The learner should read the passing assertions, find the unsafe path, pressure case, or trade-off in the implementation, then explain why the reference mechanism protects the promise.
+`main` is the green reference implementation. Mission branches such as `mission/level-01-ledger-transfer` are allowed to be intentionally red so learners can practice the natural engineering loop: read the incident, reproduce the failure, inspect code, explore the concept, patch the implementation, verify, write a report, and commit.
+
+For levels without a mission branch, treat a green test as a completed incident file, not as proof that there is nothing to diagnose. The learner should read the passing assertions, find the unsafe path, pressure case, or trade-off in the implementation, then explain why the reference mechanism protects the promise.
 
 ## Default Workflow
 
 When helping in this repo:
 
 1. Start by reading the relevant level README, exercise README, tests, and implementation.
-2. Use tests and Postgres workload rows as evidence, not just pass/fail signals.
-3. When a test includes both unsafe and safe behavior, explicitly contrast the risky implementation path with the reference path.
-4. Prefer explanations that name the player/operator promise, changed state, invariant, evidence, mechanism, and remaining risk.
-5. Encourage small diagrams for data flow, state transitions, contention windows, queue paths, replica paths, or consensus paths.
-6. Make code changes only when the user asks for implementation, repair, or experimentation. The reference implementations are intentionally present.
+2. If the exercise has a `MISSION.md`, follow that mission workflow and expect the starter branch to fail before the fix.
+3. Use tests and Postgres workload rows as evidence, not just pass/fail signals.
+4. When a test includes both unsafe and safe behavior, explicitly contrast the risky implementation path with the reference path.
+5. Prefer explanations that name the player/operator promise, changed state, invariant, evidence, mechanism, and remaining risk.
+6. Encourage small diagrams for data flow, state transitions, contention windows, queue paths, replica paths, or consensus paths.
+7. On mission branches, finish with the targeted tests, `REPORT.md`, and a meaningful commit.
 
 ## Important Paths
 
 - `README.md`: learning contract, progression map, and root definition of done.
 - `GLOSSARY.md`: project-local vocabulary and Makai promises.
 - `labs/level_01` through `labs/level_06`: level workbooks, exercise prompts, and tests.
+- `labs/level_01/exercises/ledger_transfer/MISSION.md`: first mission-branch repair workflow.
 - `src/system_design_labs`: runnable reference implementations of system primitives.
 - `src/system_design_labs/makai`: Makai-facing helpers for ledger, checkout, workload, and Postgres access.
 - `migrations`: six Postgres schemas used by `sdl-db`.

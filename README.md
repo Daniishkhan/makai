@@ -8,19 +8,22 @@ The goal is not to memorize patterns. The goal is to debug a concrete betrayal o
 
 ## Learning Contract
 
-These labs are reading-first. They are not fill-in-the-blank kata, and the reference implementations are intentionally present. Senior system work often starts with unfamiliar code that already runs; the practice here is to read it, trace it, diagram it, diagnose it, and explain the trade-offs clearly enough that implementation becomes the easy part.
+These labs are reading-first, but they should feel like real software engineering. Senior system work often starts with unfamiliar code, a failing behavior, and a business promise that must be restored. The practice here is to read the test, inspect the implementation, learn the system-design concept just in time, write the fix, verify it, explain it, and commit it cleanly.
 
-The test suite is expected to pass. Green tests do not mean there is nothing to find. In this repo, tests are completed incident files: some expose an unsafe path, some prove the safer mechanism, and some compare trade-offs under pressure. Your job is to read the passing test, locate the production risk in the implementation, and explain why the reference path keeps Makai's promise.
+`main` is the green reference implementation and source of truth. Mission branches are intentionally broken starter branches for hands-on repair. When a mission branch exists, switch to it, expect the relevant tests to fail, fix the implementation, write a short report, and commit your work.
 
-Use each lab in this loop:
+Use mission labs in this loop:
 
-1. Run the test or workload to collect green evidence, not to wait for a red suite.
-2. Read the test as the incident report: what promise is being checked, and what state proves it?
-3. Trace the implementation and schema that own the state transition.
-4. Find the unsafe path, pressure case, or trade-off the test is pointing at.
-5. Draw a small diagram: data flow, state transition, contention window, queue path, replica path, or consensus path.
-6. Write the diagnosis in your own words: risk, invariant, evidence, reference mechanism, and remaining risk.
-7. Treat code changes as optional experiments. If syntax or boilerplate is the only blocker, use Codex for that part after you understand the mechanism.
+1. Read the mission ticket and the failing test.
+2. Run the failing test on the mission branch.
+3. Inspect the real implementation and schema that own the state transition.
+4. Explore the concept enough to explain the fix.
+5. Patch the implementation.
+6. Run the targeted tests, then the broader level tests.
+7. Write `REPORT.md` with the incident, evidence, mechanism, verification, and remaining risk.
+8. Commit the fix with a message that names the mechanism.
+
+For levels that do not yet have a mission branch, `main` still works as a green reference workbook: read the passing tests as incident evidence, trace the implementation, diagram the mechanism, and write the diagnosis.
 
 ## Progression Map
 
@@ -32,6 +35,12 @@ Use each lab in this loop:
 | 4 | Viral gate-run load | Use caches, shard maps, Bloom filters, coalescing, and rate limiters | `labs/level_04/exercises` | `makai_level_04` |
 | 5 | Mirror-realm consistency | Compare consistency models, detect conflicts, merge counters, isolate failures | `labs/level_05/exercises` | `makai_level_05` |
 | 6 | Final-tower coordination | Run the local Postgres flow, practice LSM and Raft drills, explain trade-offs | `labs/level_06/exercises` | `makai_level_06` |
+
+## Mission Branches
+
+| Branch | Exercise | Status |
+| --- | --- | --- |
+| `mission/level-01-ledger-transfer` | `labs/level_01/exercises/ledger_transfer` | Broken starter for transaction repair |
 
 ## Topics to Explore
 
@@ -69,17 +78,18 @@ The seed data creates one coherent Makai quest dataset: adventurers, coin pouche
 
 ## Definition of Done
 
-A level is done when a passing test file is no longer just green; you can explain why each important assertion exists. That means you can:
+A level is done when you can:
 
-- Reproduce the failure, unsafe path, or pressure case inside the passing tests or Postgres workload.
+- Reproduce the failure, unsafe path, or pressure case with tests or the Postgres workload.
 - Name the promise Makai made to the player or operator.
 - Name the Makai state that changed: coin pouch, gate slot, key, shop checkout, dispatch, cache ward, shard route, mirror replica, or final-tower drill.
 - State the invariant in one sentence.
 - Point to evidence from a test, debugger session, SQL query, or workload row count.
 - Draw the smallest useful diagram of the state transition, data flow, or failure window.
-- Explain the reference mechanism that fixes, prevents, or contains the issue.
+- Explain the mechanism that fixes, prevents, or contains the issue.
 - Explain what the mechanism does not solve.
-- Run the level tests and write a short diagnosis in your own words before reading any review notes.
+- For mission branches, commit the fix with a short `REPORT.md`.
+- For reference-only levels, write a short diagnosis in your own words before reading any review notes.
 
 ## Project Map
 

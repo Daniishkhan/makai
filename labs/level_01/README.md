@@ -16,13 +16,13 @@ Maps, ledgers, and invariant scans. Build the habit of deriving totals from stat
 
 ## Exercises
 
-| Exercise | Test command |
-| --- | --- |
-| `exercises/ledger_transfer` | `uv run python -m pytest labs/level_01/tests` |
+| Exercise | Mission | Starter branch | Test command |
+| --- | --- | --- | --- |
+| `exercises/ledger_transfer` | `exercises/ledger_transfer/MISSION.md` | `mission/level-01-ledger-transfer` | `uv run python -m pytest labs/level_01/tests` |
 
-## How To Read The Passing Tests
+## How To Work The Mission
 
-The tests should pass. Read `test_naive_transfer_can_lose_money_after_crash` as the incident evidence: the unsafe path debits Ava before the crash and leaves Makai with missing value. Then read the transaction tests as the reference proof that debit, credit, transfer row, and ledger rows now succeed or roll back together.
+`main` is the green reference. To practice the real repair loop, switch to `mission/level-01-ledger-transfer`, read the mission ticket, run the Level 1 tests, inspect `src/system_design_labs/makai/ledger.py`, repair the transaction boundary, write `REPORT.md`, and commit the fix.
 
 ## DB Commands
 
@@ -39,20 +39,21 @@ Run `uv run sdl-db workload --iterations 50`, then compare `SUM(balance_cents)` 
 ## Definition of Done
 
 - [ ] I traced `naive_transfer_without_transaction` and `transfer` against the tests.
-- [ ] I can explain why the naive-path test passes while still proving a real production risk.
+- [ ] On the mission branch, I reproduced the failing transaction tests before changing code.
 - [ ] I can diagram the debit, credit, transfer row, ledger rows, transaction boundary, and crash window.
 - [ ] I can name the money-conservation invariant and point to balance or ledger evidence.
 - [ ] I can explain how rollback restores atomicity after a crash or insufficient funds.
 - [ ] I can name what this fix does not solve, especially broader isolation or concurrent-write anomalies.
 - [ ] I ran `uv run python -m pytest labs/level_01/tests`.
+- [ ] I wrote `labs/level_01/exercises/ledger_transfer/REPORT.md` and committed the fix.
 
 ## Your write-up
 
-- Which unsafe path or crash window did the passing test expose?
+- Which unsafe path or crash window did the failing test expose?
 - What coin-pouch or ledger state changed?
 - What invariant broke?
 - What evidence did the debugger, test, or SQL output show?
-- What reference mechanism fixes it?
+- What mechanism fixes it?
 - What does this still not solve?
 
 ## Rubric

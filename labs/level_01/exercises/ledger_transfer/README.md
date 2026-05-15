@@ -2,7 +2,9 @@
 
 Scenario: Ava funds her quest pouch, but the process crashes after the debit and before the Gatehouse credit. The changed state is wallet balance plus ledger evidence, and the broken promise is money conservation.
 
-Read the passing test as proof: it shows the naive transfer can leak value, then shows how the reference path binds the debit, credit, and ledger rows inside one transaction.
+This exercise has a broken starter branch: `mission/level-01-ledger-transfer`.
+
+Use [MISSION.md](MISSION.md) for the engineering loop: read the incident, run the failing tests, inspect the real implementation, explore atomicity and transactions, write the fix, verify it, write `REPORT.md`, and commit.
 
 Run:
 
