@@ -5,7 +5,7 @@
 - Reference branch: `main`
 - Starter branch: `mission/level-01-ledger-transfer`
 
-`main` should stay green. The mission branch is intentionally broken so you can practice the real loop: read evidence, repair code, verify, report, and commit.
+`main` should stay green. The mission branch is intentionally broken so the tests become the incident spec and you repair the implementation.
 
 ## Incident Ticket
 

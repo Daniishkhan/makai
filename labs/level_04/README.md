@@ -16,16 +16,19 @@ LRU, Bloom filters, consistent hash rings, token buckets, leaky buckets, and bou
 
 ## Exercises
 
-| Exercise | Test command |
-| --- | --- |
-| `exercises/hash_sharding` and `exercises/consistent_hashing` | `uv run python -m pytest labs/level_04/tests/test_hash_sharding.py labs/level_04/tests/test_consistent_hashing.py` |
-| `exercises/cache_stampede` and `exercises/lru_cache` | `uv run python -m pytest labs/level_04/tests/test_cache_stampede.py labs/level_04/tests/test_lru_cache.py labs/level_04/tests/test_request_coalescing.py` |
-| `exercises/rate_limiters` and `exercises/backpressure` | `uv run python -m pytest labs/level_04/tests/test_token_bucket.py labs/level_04/tests/test_leaky_bucket.py labs/level_04/tests/test_bounded_queue.py` |
-| `exercises/bloom_filter` | `uv run python -m pytest labs/level_04/tests/test_bloom_filter.py` |
+| Exercise | Mission | Starter branch | Test command |
+| --- | --- | --- | --- |
+| `exercises/hash_sharding` | `exercises/hash_sharding/MISSION.md` | `mission/level-04-hash-sharding` | `uv run python -m pytest labs/level_04/tests/test_hash_sharding.py` |
+| `exercises/consistent_hashing` | `exercises/consistent_hashing/MISSION.md` | `mission/level-04-consistent-hashing` | `uv run python -m pytest labs/level_04/tests/test_consistent_hashing.py` |
+| `exercises/cache_stampede` | `exercises/cache_stampede/MISSION.md` | `mission/level-04-cache-stampede` | `uv run python -m pytest labs/level_04/tests/test_cache_stampede.py labs/level_04/tests/test_request_coalescing.py` |
+| `exercises/lru_cache` | `exercises/lru_cache/MISSION.md` | `mission/level-04-lru-cache` | `uv run python -m pytest labs/level_04/tests/test_lru_cache.py` |
+| `exercises/rate_limiters` | `exercises/rate_limiters/MISSION.md` | `mission/level-04-rate-limiters` | `uv run python -m pytest labs/level_04/tests/test_token_bucket.py labs/level_04/tests/test_leaky_bucket.py` |
+| `exercises/backpressure` | `exercises/backpressure/MISSION.md` | `mission/level-04-backpressure` | `uv run python -m pytest labs/level_04/tests/test_bounded_queue.py` |
+| `exercises/bloom_filter` | `exercises/bloom_filter/MISSION.md` | `mission/level-04-bloom-filter` | `uv run python -m pytest labs/level_04/tests/test_bloom_filter.py` |
 
-## How To Read The Passing Tests
+## How To Work The Missions
 
-The tests should pass. Read them as load-pressure probes: a cache miss, a hot key, a remapped shard, a maybe-present Bloom result, or a rejected request is not automatically a bug. The work is to identify which mechanism protects correctness, which mechanism only shapes load, and what trade-off the green assertion is documenting.
+`main` is the green reference. To practice the real repair loop, switch to the starter branch in the table, read the mission ticket, run the failing tests, inspect the named implementation, repair the mechanism, write `REPORT.md`, and commit the fix.
 
 ## DB Commands
 
@@ -42,21 +45,22 @@ Run `uv run sdl-db workload --iterations 50`, then inspect cache rows, shard row
 ## Definition of Done
 
 - [ ] I traced cache-aside, request coalescing, LRU, sharding, Bloom filter, rate limiter, and bounded queue tests.
-- [ ] I can explain why load-shaping tests pass while still exposing pressure cases that would hurt production.
+- [ ] On the mission branch, I reproduced the failing test before changing code.
 - [ ] I can diagram the hot gate-map read path and mark where load is shaped before it reaches source-of-truth state.
 - [ ] I can explain what happens when the cache expires under load and how coalescing changes backend pressure.
 - [ ] I can compare modulo sharding with consistent hashing using movement evidence from the tests.
 - [ ] I can explain Bloom filter false positives and rate-limit decisions without treating them as correctness mechanisms.
 - [ ] I can choose between token bucket, leaky bucket, and bounded queue for a specific gate-run pressure case.
 - [ ] I ran `uv run python -m pytest labs/level_04/tests`.
+- [ ] I wrote the exercise `REPORT.md` and committed the fix.
 
 ## Your write-up
 
-- Which pressure case or trade-off did the passing test expose?
+- Which pressure case or trade-off did the failing test expose?
 - What cache, shard, or queue state changed?
 - What invariant or service objective broke?
 - What evidence did the debugger, test, or SQL output show?
-- What reference mechanism fixes or contains it?
+- What mechanism fixes or contains it?
 - What does this still not solve?
 
 ## Rubric
