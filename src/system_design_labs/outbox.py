@@ -25,9 +25,11 @@ class InMemoryOutboxDB:
         if amount_cents <= 0:
             raise InvalidOrder("amount must be positive")
 
+        # Mission starter bug: order state is written before the outbox event
+        # is staged, so a crash can leave committed business state alone.
+        self.orders[order_id] = {"id": order_id, "amount_cents": amount_cents}
         staged_orders = dict(self.orders)
         staged_outbox = list(self.outbox)
-        staged_orders[order_id] = {"id": order_id, "amount_cents": amount_cents}
 
         if fail_after_order:
             raise RuntimeError("simulated crash before outbox event")
