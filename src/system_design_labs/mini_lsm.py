@@ -23,13 +23,15 @@ class MiniLSM:
             self.flush()
 
     def get(self, key: str) -> str | None:
-        if key in self.memtable:
-            value = self.memtable[key]
-            return None if value is TOMBSTONE else value  # type: ignore[return-value]
+        # Mission starter bug: old segments are checked before the memtable,
+        # so fresh writes can be hidden by stale flushed values.
         for table in self.sstables:
             if key in table:
                 value = table[key]
                 return None if value is TOMBSTONE else value  # type: ignore[return-value]
+        if key in self.memtable:
+            value = self.memtable[key]
+            return None if value is TOMBSTONE else value  # type: ignore[return-value]
         return None
 
     def flush(self) -> None:
