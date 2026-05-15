@@ -21,9 +21,9 @@ class LRUCache(Generic[K, V]):
     def get(self, key: K) -> V | None:
         if key not in self._items:
             return None
-        value = self._items.pop(key)
-        self._items[key] = value
-        return value
+        # Mission starter bug: reads return the value but do not refresh
+        # recency, so recently used keys can be evicted.
+        return self._items[key]
 
     def put(self, key: K, value: V) -> None:
         if key in self._items:
