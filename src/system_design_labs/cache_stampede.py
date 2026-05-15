@@ -31,9 +31,8 @@ class CacheAside:
             return entry.value  # type: ignore[return-value]
 
         with self._lock_for(key):
-            entry = self._entries.get(key)
-            if entry is not None and entry.expires_at > now:
-                return entry.value  # type: ignore[return-value]
+            # Mission starter bug: the cache is not checked again after
+            # waiting for the per-key lock, so every waiter reloads.
             value = loader()
             self._entries[key] = CacheEntry(value=value, expires_at=now + self.ttl_seconds)
             return value
