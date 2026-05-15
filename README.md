@@ -30,6 +30,19 @@ Use each lab in this loop:
 | 5 | Mirror-realm consistency | Compare consistency models, detect conflicts, merge counters, isolate failures | `labs/level_05/exercises` | `makai_level_05` |
 | 6 | Final-tower coordination | Run the local Postgres flow, practice LSM and Raft drills, explain trade-offs | `labs/level_06/exercises` | `makai_level_06` |
 
+## Topics to Explore
+
+Use [GLOSSARY.md](GLOSSARY.md) first for the project-local meaning, then search the topic names when you want deeper background. The goal is not to become encyclopedic before starting; it is to know which idea you are looking at while reading the code.
+
+| Level | Start with these topics |
+| --- | --- |
+| 1 | [Invariant](GLOSSARY.md#invariant), [Atomicity](GLOSSARY.md#atomicity), [Transaction](GLOSSARY.md#transaction), concurrency, crash consistency, rollback, double-entry ledger |
+| 2 | [Isolation](GLOSSARY.md#isolation), resource modeling, uniqueness constraints, race conditions, locks, optimistic vs pessimistic concurrency control |
+| 3 | [Idempotency](GLOSSARY.md#idempotency), [Outbox](GLOSSARY.md#outbox), [At-Least-Once Delivery](GLOSSARY.md#at-least-once-delivery), request fingerprinting, retry backoff, jitter, consumer dedupe |
+| 4 | [Cache Stampede](GLOSSARY.md#cache-stampede), [Consistent Hashing](GLOSSARY.md#consistent-hashing), [Bloom Filter](GLOSSARY.md#bloom-filter), [Backpressure](GLOSSARY.md#backpressure), cache-aside, request coalescing, LRU, token bucket, leaky bucket, bounded queue |
+| 5 | [Replica Lag](GLOSSARY.md#replica-lag), [Vector Clock](GLOSSARY.md#vector-clock), [CRDT](GLOSSARY.md#crdt), primary/replica replication, multi-leader conflict, last-write-wins, circuit breaker, failover |
+| 6 | [LSM Compaction](GLOSSARY.md#lsm-compaction), [Raft Majority Commit](GLOSSARY.md#raft-majority-commit), migration runners, seed data, workload design, consensus, storage read/write amplification |
+
 ## Run Everything
 
 ```bash
