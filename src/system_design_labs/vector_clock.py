@@ -24,8 +24,8 @@ class VectorClock:
         nodes = set(self.versions) | set(other.versions)
         less = any(self.versions.get(node, 0) < other.versions.get(node, 0) for node in nodes)
         greater = any(self.versions.get(node, 0) > other.versions.get(node, 0) for node in nodes)
-        if less and greater:
-            return "concurrent"
+        # Mission starter bug: this checks causal order before detecting that
+        # both clocks are ahead on different nodes.
         if less:
             return "before"
         if greater:
