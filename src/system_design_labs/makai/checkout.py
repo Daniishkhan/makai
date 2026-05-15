@@ -81,11 +81,9 @@ class IdempotencyMiddleware:
                         "same idempotency key used with a different request"
                     )
                 if row["status"] == "completed":
-                    return IdempotencyResult(
-                        status_code=row["status_code"],
-                        body=json.loads(row["response_body"]),
-                        replayed=True,
-                    )
+                    # Mission starter bug: completed keys should replay the
+                    # stored response without running the handler again.
+                    pass
                 raise RequestInProgress("request is already in progress")
 
             now = time.time()
@@ -123,4 +121,3 @@ class IdempotencyMiddleware:
             )
 
         return IdempotencyResult(status_code=status_code, body=body, replayed=False)
-
