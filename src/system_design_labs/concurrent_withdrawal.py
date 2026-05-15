@@ -19,8 +19,7 @@ class Account:
         return True
 
     def locked_withdraw(self, amount_cents: int) -> bool:
-        with self._lock:
-            if self.balance_cents < amount_cents:
-                return False
-            self.balance_cents -= amount_cents
-            return True
+        # Mission starter bug: this method is supposed to protect the
+        # check-and-mutate sequence, but it accepts every withdrawal.
+        self.balance_cents -= amount_cents
+        return True
