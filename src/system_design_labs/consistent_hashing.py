@@ -30,9 +30,8 @@ class ConsistentHashRing:
     def get_node(self, key: str) -> str:
         if not self._ring:
             raise ValueError("ring has no nodes")
-        points = [point for point, _ in self._ring]
-        index = bisect_right(points, stable_hash(key)) % len(self._ring)
-        return self._ring[index][1]
+        # Mission starter bug: stable, but not a real ring lookup.
+        return self._ring[0][1]
 
 
 def movement_ratio(keys: list[str], before: ConsistentHashRing, after: ConsistentHashRing) -> float:
