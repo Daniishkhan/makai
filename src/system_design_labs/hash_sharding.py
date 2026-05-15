@@ -15,7 +15,9 @@ class ModuloSharder:
     def shard_for(self, key: str) -> str:
         if not self.shards:
             raise ValueError("at least one shard is required")
-        return self.shards[stable_hash(key) % len(self.shards)]
+        # Mission starter bug: every key goes to the first shard, so routing
+        # is stable but capacity changes do not reveal real movement.
+        return self.shards[0]
 
 
 def movement_ratio(keys: list[str], before: ModuloSharder, after: ModuloSharder) -> float:
