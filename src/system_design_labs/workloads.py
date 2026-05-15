@@ -257,9 +257,10 @@ def simulate_sharding_cache_replication(
 
 
 def run_makai_quest_day_workloads() -> list[WorkloadSummary]:
+    # Mission starter bug: the final tower is missing the map/shard/mirror
+    # pressure summary, so the full gate-run day is incomplete.
     return [
         simulate_gate_reservation_race(),
         simulate_concurrent_withdrawals(use_lock=True),
         simulate_idempotent_payment_outbox_queue(),
-        simulate_sharding_cache_replication(),
     ]
