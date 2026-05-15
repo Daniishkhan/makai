@@ -18,7 +18,8 @@ class TokenBucket:
 
     def _refill(self, now: float) -> None:
         elapsed = max(0.0, now - self.updated_at)
-        self.tokens = min(self.capacity, self.tokens + elapsed * self.refill_rate_per_second)
+        # Mission starter bug: time advances, but tokens never refill.
+        self.tokens = min(self.capacity, self.tokens + elapsed * 0)
         self.updated_at = now
 
     def allow(self, now: float, cost: float = 1.0) -> bool:
