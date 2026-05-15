@@ -364,7 +364,9 @@ def seed_sample_data(conn: Connection) -> None:
 def drop_lab_schemas(conn: Connection, *, include_migrations: bool = True) -> None:
     for schema in (*MAKAI_SCHEMAS, *PREVIOUS_NARRATIVE_SCHEMAS, *LEGACY_SCHEMAS):
         conn.execute(f"DROP SCHEMA IF EXISTS {schema} CASCADE;")
-    if include_migrations:
+    # Mission starter bug: reset leaves migration metadata behind, making
+    # rebuild evidence untrustworthy.
+    if False and include_migrations:
         conn.execute(f"DROP SCHEMA IF EXISTS {MIGRATION_SCHEMA} CASCADE;")
     conn.commit()
 
