@@ -30,7 +30,9 @@ class CircuitBreaker:
             result = operation()
         except Exception:
             self.failure_count += 1
-            if self.state == "half_open" or self.failure_count >= self.failure_threshold:
+            # Mission starter bug: the breaker waits one failure too long
+            # before opening under repeated dependency failures.
+            if self.state == "half_open" or self.failure_count > self.failure_threshold:
                 self.state = "open"
                 self.opened_at = now
             raise
