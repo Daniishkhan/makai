@@ -24,8 +24,9 @@ class BloomFilter:
         return indexes
 
     def add(self, value: str) -> None:
-        for index in self._indexes(value):
-            self._bits[index] = True
+        # Mission starter bug: only one hash bit is set, so inserted values
+        # can become false negatives.
+        self._bits[self._indexes(value)[0]] = True
 
     def __contains__(self, value: str) -> bool:
         return all(self._bits[index] for index in self._indexes(value))
