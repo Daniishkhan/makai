@@ -23,7 +23,7 @@ Use mission labs in this loop:
 7. Write `REPORT.md` with the incident, evidence, mechanism, verification, and remaining risk.
 8. Commit the fix with a message that names the mechanism.
 
-For levels that do not yet have a mission branch, `main` still works as a green reference workbook: read the passing tests as incident evidence, trace the implementation, diagram the mechanism, and write the diagnosis.
+Every exercise has a mission branch. `main` remains useful for comparison after you finish, but the primary practice loop starts on the mission branch.
 
 ## Progression Map
 
@@ -41,6 +41,27 @@ For levels that do not yet have a mission branch, `main` still works as a green 
 | Branch | Exercise | Status |
 | --- | --- | --- |
 | `mission/level-01-ledger-transfer` | `labs/level_01/exercises/ledger_transfer` | Broken starter for transaction repair |
+| `mission/level-02-resource-modeling` | `labs/level_02/exercises/resource_modeling` | Broken starter for gate ownership modeling |
+| `mission/level-02-concurrent-reservations` | `labs/level_02/exercises/concurrent_reservations` | Broken starter for locked mutation |
+| `mission/level-03-checkout-idempotency` | `labs/level_03/exercises/checkout_idempotency` | Broken starter for safe request replay |
+| `mission/level-03-outbox-queue` | `labs/level_03/exercises/outbox_queue` | Broken starter for atomic outbox writes |
+| `mission/level-03-retry-schedule` | `labs/level_03/exercises/retry_schedule` | Broken starter for exponential backoff |
+| `mission/level-04-hash-sharding` | `labs/level_04/exercises/hash_sharding` | Broken starter for deterministic shard routing |
+| `mission/level-04-consistent-hashing` | `labs/level_04/exercises/consistent_hashing` | Broken starter for stable hash-ring expansion |
+| `mission/level-04-cache-stampede` | `labs/level_04/exercises/cache_stampede` | Broken starter for single-flight cache misses |
+| `mission/level-04-lru-cache` | `labs/level_04/exercises/lru_cache` | Broken starter for recency refresh |
+| `mission/level-04-rate-limiters` | `labs/level_04/exercises/rate_limiters` | Broken starter for token refill |
+| `mission/level-04-backpressure` | `labs/level_04/exercises/backpressure` | Broken starter for overflow policy |
+| `mission/level-04-bloom-filter` | `labs/level_04/exercises/bloom_filter` | Broken starter for no-false-negative membership |
+| `mission/level-05-replica-lag` | `labs/level_05/exercises/replica_lag` | Broken starter for synchronous replication |
+| `mission/level-05-multi-leader-conflict` | `labs/level_05/exercises/multi_leader_conflict` | Broken starter for deterministic LWW conflict handling |
+| `mission/level-05-crdt-counters` | `labs/level_05/exercises/crdt_counters` | Broken starter for idempotent CRDT merge |
+| `mission/level-05-vector-clocks` | `labs/level_05/exercises/vector_clocks` | Broken starter for concurrency detection |
+| `mission/level-05-circuit-breaker` | `labs/level_05/exercises/circuit_breaker` | Broken starter for breaker threshold handling |
+| `mission/level-06-lsm-compaction` | `labs/level_06/exercises/lsm_compaction` | Broken starter for newest-value compaction |
+| `mission/level-06-raft-commit` | `labs/level_06/exercises/raft_commit` | Broken starter for majority commit |
+| `mission/level-06-gate-run-workload` | `labs/level_06/exercises/gate_run_workload` | Broken starter for full workload synthesis |
+| `mission/level-06-postgres-runner` | `labs/level_06/exercises/postgres_runner` | Broken starter for reset/migration runner safety |
 
 ## Topics to Explore
 
@@ -89,7 +110,6 @@ A level is done when you can:
 - Explain the mechanism that fixes, prevents, or contains the issue.
 - Explain what the mechanism does not solve.
 - For mission branches, commit the fix with a short `REPORT.md`.
-- For reference-only levels, write a short diagnosis in your own words before reading any review notes.
 
 ## Project Map
 

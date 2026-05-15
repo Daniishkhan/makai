@@ -16,16 +16,16 @@ LSM compaction and Raft majority commit. Practice reading state transitions, not
 
 ## Exercises
 
-| Exercise | Test command |
-| --- | --- |
-| `exercises/lsm_compaction` | `uv run python -m pytest labs/level_06/tests/test_mini_lsm.py` |
-| `exercises/raft_commit` | `uv run python -m pytest labs/level_06/tests/test_toy_raft.py` |
-| `exercises/gate_run_workload` | `uv run python -m pytest labs/level_06/tests/test_gate_run_workloads.py` |
-| `exercises/postgres_runner` | `uv run python -m pytest labs/level_06/tests/test_db_runner.py` |
+| Exercise | Mission | Starter branch | Test command |
+| --- | --- | --- | --- |
+| `exercises/lsm_compaction` | `exercises/lsm_compaction/MISSION.md` | `mission/level-06-lsm-compaction` | `uv run python -m pytest labs/level_06/tests/test_mini_lsm.py` |
+| `exercises/raft_commit` | `exercises/raft_commit/MISSION.md` | `mission/level-06-raft-commit` | `uv run python -m pytest labs/level_06/tests/test_toy_raft.py` |
+| `exercises/gate_run_workload` | `exercises/gate_run_workload/MISSION.md` | `mission/level-06-gate-run-workload` | `uv run python -m pytest labs/level_06/tests/test_gate_run_workloads.py` |
+| `exercises/postgres_runner` | `exercises/postgres_runner/MISSION.md` | `mission/level-06-postgres-runner` | `uv run python -m pytest labs/level_06/tests/test_db_runner.py` |
 
-## How To Read The Passing Tests
+## How To Work The Missions
 
-The tests should pass. Read this level as a synthesis drill: the workload proves the realm can be rebuilt and exercised, MiniLSM proves storage trade-offs, and ToyRaft proves majority commit boundaries. Green assertions are the evidence you use to write the final tower incident note.
+`main` is the green reference. To practice the real repair loop, switch to the starter branch in the table, read the mission ticket, run the failing tests, inspect the named implementation, repair the mechanism, write `REPORT.md`, and commit the fix.
 
 ## DB Commands
 
@@ -46,21 +46,22 @@ After the workload, verify six Makai schemas exist, no legacy schemas remain, po
 
 - [ ] I rebuilt the local database with reset, migrate, seed, workload, and status commands.
 - [ ] I traced `sdl-db` runner behavior, the in-memory workload, MiniLSM, and ToyRaft from tests to implementation.
-- [ ] I can explain why a passing synthesis test still represents operational risk and coordination limits.
+- [ ] On the mission branch, I reproduced the failing test before changing code.
 - [ ] I can diagram the full gate-run day across ledger, reservation, checkout, outbox, queue, cache, shard, replica, and final-tower state.
 - [ ] I can point to workload evidence that schemas exist, legacy schemas are gone, pouch totals survived, and async rows were produced.
 - [ ] I can explain LSM compaction using Makai write pressure and name the read/write trade-off.
 - [ ] I can explain why Raft needs a majority for a committed rescue-control decision and what minority acknowledgement leaves unresolved.
 - [ ] I can write a final incident note naming what degraded first, what protected correctness, and what I would monitor next.
 - [ ] I ran `uv run python -m pytest labs/level_06/tests`.
+- [ ] I wrote the exercise `REPORT.md` and committed the fix.
 
 ## Your write-up
 
-- Which operational risk, degradation, or coordination limit did the passing test expose?
+- Which operational risk, degradation, or coordination limit did the failing test expose?
 - What final-tower state changed?
 - What invariant or coordination rule mattered?
 - What evidence did the debugger, test, or SQL output show?
-- What reference mechanism fixes or contains it?
+- What mechanism fixes or contains it?
 - What does this still not solve?
 
 ## Rubric

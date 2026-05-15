@@ -16,14 +16,14 @@ Sets, unique indexes, gate maps, and contention. Treat a gate map as a finite se
 
 ## Exercises
 
-| Exercise | Test command |
-| --- | --- |
-| `exercises/resource_modeling` | `uv run python -m pytest labs/level_02/tests/test_api_resource_modeling.py` |
-| `exercises/concurrent_reservations` | `uv run python -m pytest labs/level_02/tests/test_concurrent_withdrawal.py` |
+| Exercise | Mission | Starter branch | Test command |
+| --- | --- | --- | --- |
+| `exercises/resource_modeling` | `exercises/resource_modeling/MISSION.md` | `mission/level-02-resource-modeling` | `uv run python -m pytest labs/level_02/tests/test_api_resource_modeling.py` |
+| `exercises/concurrent_reservations` | `exercises/concurrent_reservations/MISSION.md` | `mission/level-02-concurrent-reservations` | `uv run python -m pytest labs/level_02/tests/test_concurrent_withdrawal.py` |
 
-## How To Read The Passing Tests
+## How To Work The Missions
 
-The tests should pass. Read the naive withdrawal test as a controlled race report: two callers both believe they won because the implementation separates check from mutation. Then read the locked and resource-model tests as proof of the reference shape: one owner, one protected transition, one place where the invariant is enforced.
+`main` is the green reference. To practice the real repair loop, switch to the starter branch in the table, read the mission ticket, run the failing tests, inspect the named implementation, repair the mechanism, write `REPORT.md`, and commit the fix.
 
 ## DB Commands
 
@@ -40,20 +40,21 @@ Run `uv run sdl-db workload --iterations 50`, then inspect `makai_level_02.reser
 ## Definition of Done
 
 - [ ] I traced the resource model in `GateReservationStore` and the contention model in `Account`.
-- [ ] I can explain why the naive contention test passes while still proving a real production risk.
+- [ ] On the mission branch, I reproduced the failing test before changing code.
 - [ ] I can diagram the boundary between adventurer, gate run, passage slot, reservation, and checkout.
 - [ ] I can identify the state that grants ownership and the uniqueness rule that protects a gate slot.
 - [ ] I can reproduce the contention case, name the single winner, and explain why the loser must not mutate state.
 - [ ] I can explain why API shape and application checks still need database constraints or isolation under pressure.
 - [ ] I ran `uv run python -m pytest labs/level_02/tests`.
+- [ ] I wrote the exercise `REPORT.md` and committed the fix.
 
 ## Your write-up
 
-- Which unsafe path or contention window did the passing test expose?
+- Which unsafe path or contention window did the failing test expose?
 - What gate-slot or pouch state changed?
 - What invariant broke?
 - What evidence did the debugger, test, or SQL output show?
-- What reference mechanism fixes it?
+- What mechanism fixes it?
 - What does this still not solve?
 
 ## Rubric

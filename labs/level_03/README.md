@@ -16,15 +16,15 @@ Queues, dedupe sets, and retry schedules. Track which dispatch messages have bee
 
 ## Exercises
 
-| Exercise | Test command |
-| --- | --- |
-| `exercises/checkout_idempotency` | `uv run python -m pytest labs/level_03/tests/test_checkout_idempotency.py` |
-| `exercises/outbox_queue` | `uv run python -m pytest labs/level_03/tests/test_outbox.py labs/level_03/tests/test_message_queue.py` |
-| `exercises/retry_schedule` | `uv run python -m pytest labs/level_03/tests/test_retry_backoff.py` |
+| Exercise | Mission | Starter branch | Test command |
+| --- | --- | --- | --- |
+| `exercises/checkout_idempotency` | `exercises/checkout_idempotency/MISSION.md` | `mission/level-03-checkout-idempotency` | `uv run python -m pytest labs/level_03/tests/test_checkout_idempotency.py` |
+| `exercises/outbox_queue` | `exercises/outbox_queue/MISSION.md` | `mission/level-03-outbox-queue` | `uv run python -m pytest labs/level_03/tests/test_outbox.py labs/level_03/tests/test_message_queue.py` |
+| `exercises/retry_schedule` | `exercises/retry_schedule/MISSION.md` | `mission/level-03-retry-schedule` | `uv run python -m pytest labs/level_03/tests/test_retry_backoff.py` |
 
-## How To Read The Passing Tests
+## How To Work The Missions
 
-The tests should pass. Read them as shop and dispatch incident files: duplicate requests, mismatched idempotency keys, crashed handlers, duplicate message delivery, and synchronized retries are the risks. The passing assertions prove which state is cached, rejected, persisted, deduped, delayed, or retried.
+`main` is the green reference. To practice the real repair loop, switch to the starter branch in the table, read the mission ticket, run the failing tests, inspect the named implementation, repair the mechanism, write `REPORT.md`, and commit the fix.
 
 ## DB Commands
 
@@ -41,20 +41,21 @@ Run `uv run sdl-db workload --iterations 50`, then compare shop checkout rows, i
 ## Definition of Done
 
 - [ ] I traced idempotency, outbox, queue, and retry code from tests to implementation.
-- [ ] I can explain why the duplicate and retry tests pass while still describing incidents that would be dangerous without these mechanisms.
+- [ ] On the mission branch, I reproduced the failing test before changing code.
 - [ ] I can diagram the checkout lifecycle: request key, fingerprint, in-progress lock, completed response, outbox row, queue delivery.
 - [ ] I can explain the difference between duplicate request, duplicate business effect, and duplicate message delivery.
 - [ ] I can show where the cached response and dispatch evidence are stored.
 - [ ] I can name remaining risks: lock expiry, long-running handlers, poisoned messages, downstream side effects, and retry storms.
 - [ ] I ran `uv run python -m pytest labs/level_03/tests`.
+- [ ] I wrote the exercise `REPORT.md` and committed the fix.
 
 ## Your write-up
 
-- Which unsafe retry or dispatch path did the passing test expose?
+- Which unsafe retry or dispatch path did the failing test expose?
 - What shop checkout or dispatch state changed?
 - What invariant broke?
 - What evidence did the debugger, test, or SQL output show?
-- What reference mechanism fixes it?
+- What mechanism fixes it?
 - What does this still not solve?
 
 ## Rubric

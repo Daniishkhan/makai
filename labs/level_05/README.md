@@ -16,17 +16,17 @@ Vector clocks, CRDT maps, topology reasoning, and failover state machines.
 
 ## Exercises
 
-| Exercise | Test command |
-| --- | --- |
-| `exercises/replica_lag` | `uv run python -m pytest labs/level_05/tests/test_primary_replica.py` |
-| `exercises/multi_leader_conflict` | `uv run python -m pytest labs/level_05/tests/test_multi_leader_lww.py` |
-| `exercises/crdt_counters` | `uv run python -m pytest labs/level_05/tests/test_crdts.py` |
-| `exercises/vector_clocks` | `uv run python -m pytest labs/level_05/tests/test_vector_clock.py` |
-| `exercises/circuit_breaker` | `uv run python -m pytest labs/level_05/tests/test_circuit_breaker.py` |
+| Exercise | Mission | Starter branch | Test command |
+| --- | --- | --- | --- |
+| `exercises/replica_lag` | `exercises/replica_lag/MISSION.md` | `mission/level-05-replica-lag` | `uv run python -m pytest labs/level_05/tests/test_primary_replica.py` |
+| `exercises/multi_leader_conflict` | `exercises/multi_leader_conflict/MISSION.md` | `mission/level-05-multi-leader-conflict` | `uv run python -m pytest labs/level_05/tests/test_multi_leader_lww.py` |
+| `exercises/crdt_counters` | `exercises/crdt_counters/MISSION.md` | `mission/level-05-crdt-counters` | `uv run python -m pytest labs/level_05/tests/test_crdts.py` |
+| `exercises/vector_clocks` | `exercises/vector_clocks/MISSION.md` | `mission/level-05-vector-clocks` | `uv run python -m pytest labs/level_05/tests/test_vector_clock.py` |
+| `exercises/circuit_breaker` | `exercises/circuit_breaker/MISSION.md` | `mission/level-05-circuit-breaker` | `uv run python -m pytest labs/level_05/tests/test_circuit_breaker.py` |
 
-## How To Read The Passing Tests
+## How To Work The Missions
 
-The tests should pass. Read async replication loss, stale visibility, last-write-wins, vector-clock concurrency, CRDT merge, and breaker transitions as separate incident reports. Green means the repo captured the behavior clearly; your job is to decide which paths tolerate it and which need coordination, conflict handling, or isolation.
+`main` is the green reference. To practice the real repair loop, switch to the starter branch in the table, read the mission ticket, run the failing tests, inspect the named implementation, repair the mechanism, write `REPORT.md`, and commit the fix.
 
 ## DB Commands
 
@@ -43,21 +43,22 @@ Run `uv run sdl-db workload --iterations 50`, then inspect replica lag and confl
 ## Definition of Done
 
 - [ ] I traced primary/replica lag, last-write-wins, vector clocks, CRDT counters, and circuit breaker tests.
-- [ ] I can explain why tests that show lost async writes or overwrite risk still pass as diagnostic evidence.
+- [ ] On the mission branch, I reproduced the failing test before changing code.
 - [ ] I can diagram a primary write, pending replica visibility, stale read, and failover consequence.
 - [ ] I can decide which Makai paths tolerate stale reads and which must read primary or coordinate.
 - [ ] I can detect concurrent updates and explain why last-write-wins can lose data.
 - [ ] I can separate mergeable counters from exclusive ownership state such as gate claims.
 - [ ] I can describe the circuit breaker states, the evidence that trips it, and the fallback question it does not answer.
 - [ ] I ran `uv run python -m pytest labs/level_05/tests`.
+- [ ] I wrote the exercise `REPORT.md` and committed the fix.
 
 ## Your write-up
 
-- Which consistency, conflict, or dependency risk did the passing test expose?
+- Which consistency, conflict, or dependency risk did the failing test expose?
 - What mirror replica or conflict state changed?
 - What invariant or user promise broke?
 - What evidence did the debugger, test, or SQL output show?
-- What reference mechanism fixes or contains it?
+- What mechanism fixes or contains it?
 - What does this still not solve?
 
 ## Rubric
