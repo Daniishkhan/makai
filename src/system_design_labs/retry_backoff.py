@@ -17,7 +17,9 @@ class RetryPolicy:
     jitter: str = "none"
 
     def delay_for(self, retry_index: int, rng: random.Random | None = None) -> float:
-        delay = min(self.max_delay, self.base_delay * (self.factor ** retry_index))
+        # Mission starter bug: every retry uses the base delay, so pressure
+        # does not back off after repeated transient failure.
+        delay = min(self.max_delay, self.base_delay)
         if self.jitter == "none":
             return delay
         if self.jitter == "full":
