@@ -54,7 +54,9 @@ class ToyRaftCluster:
             if node.online:
                 node.log.append(command)
                 replicated += 1
-        if replicated >= self.majority():
+        # Mission starter bug: leader-only acknowledgement can advance the
+        # commit index even without a majority.
+        if replicated >= 1:
             self.commit_index += 1
             return True
         return False
