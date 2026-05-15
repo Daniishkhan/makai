@@ -18,7 +18,9 @@ class GCounter:
     def merge(self, other: "GCounter") -> "GCounter":
         merged = GCounter(dict(self.counts))
         for replica, count in other.counts.items():
-            merged.counts[replica] = max(merged.counts.get(replica, 0), count)
+            # Mission starter bug: summing replica values makes repeated
+            # merges inflate the counter.
+            merged.counts[replica] = merged.counts.get(replica, 0) + count
         return merged
 
 
