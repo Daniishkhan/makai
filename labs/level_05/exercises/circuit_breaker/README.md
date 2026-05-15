@@ -2,7 +2,7 @@
 
 Scenario: A final-tower dependency starts failing, and every caller keeps paying the latency cost. The changed state is breaker state, and the promise is to stop draining capacity once failure is clear.
 
-Prove it with the test: move through closed, open, and half-open states, then name the fallback that still needs product approval.
+Read the passing test as proof: it moves through closed, open, and half-open states, then names the fallback that still needs product approval.
 
 Run:
 

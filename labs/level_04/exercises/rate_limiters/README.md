@@ -2,7 +2,7 @@
 
 Scenario: The shop and dispatch tower receive bursts faster than downstream systems can absorb. The changed state is request allowance over time, and the promise is controlled pressure instead of cascading failure.
 
-Prove it with the tests: compare burst behavior, smoothing behavior, rejected requests, and the user experience trade-off.
+Read the passing tests as proof: they compare burst behavior, smoothing behavior, rejected requests, and the user experience trade-off.
 
 Run:
 

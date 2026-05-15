@@ -2,7 +2,7 @@
 
 Scenario: A provider blinks during the gate rush and every stalled shop request tries again on the same beat. The changed state is the retry schedule, and the promise is that retries should heal transient failure without becoming the outage.
 
-Prove it with the test: classify the failure, calculate backoff with jitter, and know when attempts should stop or route to review.
+Read the passing test as proof: it classifies the failure, calculates backoff with jitter, and shows when attempts should stop or route to review.
 
 Run:
 

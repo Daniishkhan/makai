@@ -2,7 +2,7 @@
 
 Scenario: The full Gate Run compresses the whole realm into one day: pouches move, slots contend, shop retries happen, dispatches leave, maps heat up, and mirrors lag. The changed state crosses every earlier promise.
 
-Prove it with the test: connect pouch conservation, gate contention, idempotent checkout, outbox delivery, map-cache pressure, and replica lag into one explanation.
+Read the passing test as proof: it connects pouch conservation, gate contention, idempotent checkout, outbox delivery, map-cache pressure, and replica lag into one explanation.
 
 Run:
 

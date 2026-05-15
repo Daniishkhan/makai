@@ -2,7 +2,7 @@
 
 Scenario: Ava receives a confirmed shop upgrade, but the nearby mirror still shows the old state. The changed state is primary write plus pending replica visibility, and the promise is to recognize lag instead of declaring the upgrade lost.
 
-Prove it with the test: show the stale read, pending replication state, and when a path must read from primary or coordinate.
+Read the passing test as proof: it shows the stale read, pending replication state, and when a path must read from primary or coordinate.
 
 Run:
 

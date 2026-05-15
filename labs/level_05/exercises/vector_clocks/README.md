@@ -2,7 +2,7 @@
 
 Scenario: Two regions report different updates and the Gatehouse must decide whether one followed the other or both happened independently. The changed state is version metadata, and the promise is not to flatten concurrency into a false order.
 
-Prove it with the test: compare clocks, identify concurrent evidence, and describe the conflict handling path and metadata cost.
+Read the passing test as proof: it compares clocks, identifies concurrent evidence, and describes the conflict handling path and metadata cost.
 
 Run:
 

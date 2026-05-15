@@ -23,6 +23,10 @@ LRU, Bloom filters, consistent hash rings, token buckets, leaky buckets, and bou
 | `exercises/rate_limiters` and `exercises/backpressure` | `uv run python -m pytest labs/level_04/tests/test_token_bucket.py labs/level_04/tests/test_leaky_bucket.py labs/level_04/tests/test_bounded_queue.py` |
 | `exercises/bloom_filter` | `uv run python -m pytest labs/level_04/tests/test_bloom_filter.py` |
 
+## How To Read The Passing Tests
+
+The tests should pass. Read them as load-pressure probes: a cache miss, a hot key, a remapped shard, a maybe-present Bloom result, or a rejected request is not automatically a bug. The work is to identify which mechanism protects correctness, which mechanism only shapes load, and what trade-off the green assertion is documenting.
+
 ## DB Commands
 
 ```bash
@@ -38,6 +42,7 @@ Run `uv run sdl-db workload --iterations 50`, then inspect cache rows, shard row
 ## Definition of Done
 
 - [ ] I traced cache-aside, request coalescing, LRU, sharding, Bloom filter, rate limiter, and bounded queue tests.
+- [ ] I can explain why load-shaping tests pass while still exposing pressure cases that would hurt production.
 - [ ] I can diagram the hot gate-map read path and mark where load is shaped before it reaches source-of-truth state.
 - [ ] I can explain what happens when the cache expires under load and how coalescing changes backend pressure.
 - [ ] I can compare modulo sharding with consistent hashing using movement evidence from the tests.
@@ -47,11 +52,11 @@ Run `uv run sdl-db workload --iterations 50`, then inspect cache rows, shard row
 
 ## Your write-up
 
-- What failed?
+- Which pressure case or trade-off did the passing test expose?
 - What cache, shard, or queue state changed?
 - What invariant or service objective broke?
 - What evidence did the debugger, test, or SQL output show?
-- What mechanism fixes or contains it?
+- What reference mechanism fixes or contains it?
 - What does this still not solve?
 
 ## Rubric

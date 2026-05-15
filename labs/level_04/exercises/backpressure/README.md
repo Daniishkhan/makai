@@ -2,7 +2,7 @@
 
 Scenario: Viral gate-run traffic creates more shop and dispatch work than workers can drain. The changed state is bounded queue capacity and producer acceptance, and the promise is visible overload instead of hidden collapse.
 
-Prove it with the test: show which producers are accepted, which are rejected, and what signal callers receive before latency explodes.
+Read the passing test as proof: it shows which producers are accepted, which are rejected, and what signal callers receive before latency explodes.
 
 Run:
 

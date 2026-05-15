@@ -2,7 +2,7 @@
 
 Scenario: Bad retry keys hammer the Gatehouse lookup path while real adventurers wait. The changed state is the Bloom filter bitset, and the promise is cheap rejection for definite misses without treating maybe-present as final truth.
 
-Prove it with the test: separate definitely-absent from maybe-present results and name the false-positive risk.
+Read the passing test as proof: it separates definitely-absent from maybe-present results and names the false-positive risk.
 
 Run:
 

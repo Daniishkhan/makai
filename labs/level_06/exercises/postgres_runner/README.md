@@ -2,7 +2,7 @@
 
 Scenario: The final-tower operators need to rebuild Makai from scratch, seed the realm, and run a real workload before trusting the drills. The changed state spans all six schemas, and the promise is reproducible evidence across the quest dataset.
 
-Prove it with the commands: rebuild, seed, run the workload, and inspect rows that show schemas exist, work happened, and pouch totals survived.
+Read the passing commands as proof: rebuild, seed, run the workload, and inspect rows that show schemas exist, work happened, and pouch totals survived.
 
 Run:
 

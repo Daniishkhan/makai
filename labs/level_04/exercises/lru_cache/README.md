@@ -2,7 +2,7 @@
 
 Scenario: Gate maps compete for cache space while the Gate Run keeps one route hot. The changed state is access order and eviction choice, and the promise is faster reads without pretending recency always equals value.
 
-Prove it with the test: show the eviction evidence, cache-hit expectation, and the case where LRU chooses poorly.
+Read the passing test as proof: it shows the eviction evidence, cache-hit expectation, and the case where LRU chooses poorly.
 
 Run:
 

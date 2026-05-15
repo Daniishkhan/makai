@@ -22,6 +22,10 @@ Queues, dedupe sets, and retry schedules. Track which dispatch messages have bee
 | `exercises/outbox_queue` | `uv run python -m pytest labs/level_03/tests/test_outbox.py labs/level_03/tests/test_message_queue.py` |
 | `exercises/retry_schedule` | `uv run python -m pytest labs/level_03/tests/test_retry_backoff.py` |
 
+## How To Read The Passing Tests
+
+The tests should pass. Read them as shop and dispatch incident files: duplicate requests, mismatched idempotency keys, crashed handlers, duplicate message delivery, and synchronized retries are the risks. The passing assertions prove which state is cached, rejected, persisted, deduped, delayed, or retried.
+
 ## DB Commands
 
 ```bash
@@ -37,6 +41,7 @@ Run `uv run sdl-db workload --iterations 50`, then compare shop checkout rows, i
 ## Definition of Done
 
 - [ ] I traced idempotency, outbox, queue, and retry code from tests to implementation.
+- [ ] I can explain why the duplicate and retry tests pass while still describing incidents that would be dangerous without these mechanisms.
 - [ ] I can diagram the checkout lifecycle: request key, fingerprint, in-progress lock, completed response, outbox row, queue delivery.
 - [ ] I can explain the difference between duplicate request, duplicate business effect, and duplicate message delivery.
 - [ ] I can show where the cached response and dispatch evidence are stored.
@@ -45,11 +50,11 @@ Run `uv run sdl-db workload --iterations 50`, then compare shop checkout rows, i
 
 ## Your write-up
 
-- What failed?
+- Which unsafe retry or dispatch path did the passing test expose?
 - What shop checkout or dispatch state changed?
 - What invariant broke?
 - What evidence did the debugger, test, or SQL output show?
-- What mechanism fixes it?
+- What reference mechanism fixes it?
 - What does this still not solve?
 
 ## Rubric

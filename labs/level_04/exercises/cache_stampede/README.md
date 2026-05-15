@@ -2,7 +2,7 @@
 
 Scenario: The hot gate-map cache expires while thousands of adventurers refresh the same route. The changed state is cache entries and in-flight loaders, and the promise is that one expired map should not stampede the database.
 
-Prove it with the tests: show cache miss evidence, coalesced loader calls, and where the source of truth still lives.
+Read the passing tests as proof: they show cache miss evidence, coalesced loader calls, and where the source of truth still lives.
 
 Run:
 

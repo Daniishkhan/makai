@@ -2,7 +2,7 @@
 
 Scenario: The shop adds capacity during the rush, but moving every key would shake the whole realm. The changed state is ring placement and key ownership, and the promise is scaling with limited disruption.
 
-Prove it with the test: measure remapped keys, describe the balance trade-off, and name the operational work still needed for data movement.
+Read the passing test as proof: it measures remapped keys, describes the balance trade-off, and names the operational work still needed for data movement.
 
 Run:
 

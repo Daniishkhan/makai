@@ -2,7 +2,7 @@
 
 Scenario: Cleo refreshes a slow shop checkout after a provider timeout, sending the same intent twice. The changed state is the checkout, charge, and key upgrade record, and the broken promise is duplicate request without duplicate effect.
 
-Prove it with the test: store the request fingerprint, replay the completed response, and reject mismatched reuse of the same idempotency key.
+Read the passing test as proof: it stores the request fingerprint, replays the completed response, and rejects mismatched reuse of the same idempotency key.
 
 Run:
 

@@ -24,6 +24,10 @@ Vector clocks, CRDT maps, topology reasoning, and failover state machines.
 | `exercises/vector_clocks` | `uv run python -m pytest labs/level_05/tests/test_vector_clock.py` |
 | `exercises/circuit_breaker` | `uv run python -m pytest labs/level_05/tests/test_circuit_breaker.py` |
 
+## How To Read The Passing Tests
+
+The tests should pass. Read async replication loss, stale visibility, last-write-wins, vector-clock concurrency, CRDT merge, and breaker transitions as separate incident reports. Green means the repo captured the behavior clearly; your job is to decide which paths tolerate it and which need coordination, conflict handling, or isolation.
+
 ## DB Commands
 
 ```bash
@@ -39,6 +43,7 @@ Run `uv run sdl-db workload --iterations 50`, then inspect replica lag and confl
 ## Definition of Done
 
 - [ ] I traced primary/replica lag, last-write-wins, vector clocks, CRDT counters, and circuit breaker tests.
+- [ ] I can explain why tests that show lost async writes or overwrite risk still pass as diagnostic evidence.
 - [ ] I can diagram a primary write, pending replica visibility, stale read, and failover consequence.
 - [ ] I can decide which Makai paths tolerate stale reads and which must read primary or coordinate.
 - [ ] I can detect concurrent updates and explain why last-write-wins can lose data.
@@ -48,11 +53,11 @@ Run `uv run sdl-db workload --iterations 50`, then inspect replica lag and confl
 
 ## Your write-up
 
-- What failed?
+- Which consistency, conflict, or dependency risk did the passing test expose?
 - What mirror replica or conflict state changed?
 - What invariant or user promise broke?
 - What evidence did the debugger, test, or SQL output show?
-- What mechanism fixes or contains it?
+- What reference mechanism fixes or contains it?
 - What does this still not solve?
 
 ## Rubric

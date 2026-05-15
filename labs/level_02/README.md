@@ -21,6 +21,10 @@ Sets, unique indexes, gate maps, and contention. Treat a gate map as a finite se
 | `exercises/resource_modeling` | `uv run python -m pytest labs/level_02/tests/test_api_resource_modeling.py` |
 | `exercises/concurrent_reservations` | `uv run python -m pytest labs/level_02/tests/test_concurrent_withdrawal.py` |
 
+## How To Read The Passing Tests
+
+The tests should pass. Read the naive withdrawal test as a controlled race report: two callers both believe they won because the implementation separates check from mutation. Then read the locked and resource-model tests as proof of the reference shape: one owner, one protected transition, one place where the invariant is enforced.
+
 ## DB Commands
 
 ```bash
@@ -36,6 +40,7 @@ Run `uv run sdl-db workload --iterations 50`, then inspect `makai_level_02.reser
 ## Definition of Done
 
 - [ ] I traced the resource model in `GateReservationStore` and the contention model in `Account`.
+- [ ] I can explain why the naive contention test passes while still proving a real production risk.
 - [ ] I can diagram the boundary between adventurer, gate run, passage slot, reservation, and checkout.
 - [ ] I can identify the state that grants ownership and the uniqueness rule that protects a gate slot.
 - [ ] I can reproduce the contention case, name the single winner, and explain why the loser must not mutate state.
@@ -44,11 +49,11 @@ Run `uv run sdl-db workload --iterations 50`, then inspect `makai_level_02.reser
 
 ## Your write-up
 
-- What failed?
+- Which unsafe path or contention window did the passing test expose?
 - What gate-slot or pouch state changed?
 - What invariant broke?
 - What evidence did the debugger, test, or SQL output show?
-- What mechanism fixes it?
+- What reference mechanism fixes it?
 - What does this still not solve?
 
 ## Rubric

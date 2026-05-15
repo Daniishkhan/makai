@@ -2,7 +2,7 @@
 
 Scenario: Gate-run writes pile up as many small sorted segments, and final-tower reads begin paying for yesterday's fragments. The changed state is memtable flushes and segment layout, and the promise is that write speed will not leave reads trapped forever.
 
-Prove it with the test: trace flushes, segment reads, compaction evidence, and the read/write trade-off.
+Read the passing test as proof: it traces flushes, segment reads, compaction evidence, and the read/write trade-off.
 
 Run:
 

@@ -4,15 +4,18 @@
 
 Makai System Design Labs is a reading-first senior engineering practice repo. The goal is to help learners read unfamiliar working code, trace state transitions, draw useful diagrams, diagnose failures, and explain system-design trade-offs. Do not treat this as a fill-in-the-blank kata unless the user explicitly asks for that mode.
 
+The tests are expected to pass. Treat a green test as a completed incident file, not as proof that there is nothing to diagnose. The learner should read the passing assertions, find the unsafe path, pressure case, or trade-off in the implementation, then explain why the reference mechanism protects the promise.
+
 ## Default Workflow
 
 When helping in this repo:
 
 1. Start by reading the relevant level README, exercise README, tests, and implementation.
 2. Use tests and Postgres workload rows as evidence, not just pass/fail signals.
-3. Prefer explanations that name the player/operator promise, changed state, invariant, evidence, mechanism, and remaining risk.
-4. Encourage small diagrams for data flow, state transitions, contention windows, queue paths, replica paths, or consensus paths.
-5. Make code changes only when the user asks for implementation, repair, or experimentation. The reference implementations are intentionally present.
+3. When a test includes both unsafe and safe behavior, explicitly contrast the risky implementation path with the reference path.
+4. Prefer explanations that name the player/operator promise, changed state, invariant, evidence, mechanism, and remaining risk.
+5. Encourage small diagrams for data flow, state transitions, contention windows, queue paths, replica paths, or consensus paths.
+6. Make code changes only when the user asks for implementation, repair, or experimentation. The reference implementations are intentionally present.
 
 ## Important Paths
 

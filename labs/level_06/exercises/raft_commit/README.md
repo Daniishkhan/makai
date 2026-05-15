@@ -2,7 +2,7 @@
 
 Scenario: A rescue-control entry reaches some tower nodes but not enough to rule the realm. The changed state is leader term, votes, and replicated log entries, and the promise is that Makai never announces commitment on minority belief.
 
-Prove it with the test: count acknowledgements, identify majority evidence, and explain what remains uncommitted when only a minority accepts.
+Read the passing test as proof: it counts acknowledgements, identifies majority evidence, and explains what remains uncommitted when only a minority accepts.
 
 Run:
 

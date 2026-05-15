@@ -10,14 +10,17 @@ The goal is not to memorize patterns. The goal is to debug a concrete betrayal o
 
 These labs are reading-first. They are not fill-in-the-blank kata, and the reference implementations are intentionally present. Senior system work often starts with unfamiliar code that already runs; the practice here is to read it, trace it, diagram it, diagnose it, and explain the trade-offs clearly enough that implementation becomes the easy part.
 
+The test suite is expected to pass. Green tests do not mean there is nothing to find. In this repo, tests are completed incident files: some expose an unsafe path, some prove the safer mechanism, and some compare trade-offs under pressure. Your job is to read the passing test, locate the production risk in the implementation, and explain why the reference path keeps Makai's promise.
+
 Use each lab in this loop:
 
-1. Run the test or workload to see the behavior as evidence.
+1. Run the test or workload to collect green evidence, not to wait for a red suite.
 2. Read the test as the incident report: what promise is being checked, and what state proves it?
 3. Trace the implementation and schema that own the state transition.
-4. Draw a small diagram: data flow, state transition, contention window, queue path, replica path, or consensus path.
-5. Write the diagnosis in your own words: failure, invariant, evidence, mechanism, and remaining risk.
-6. Treat code changes as optional experiments. If syntax or boilerplate is the only blocker, use Codex for that part after you understand the mechanism.
+4. Find the unsafe path, pressure case, or trade-off the test is pointing at.
+5. Draw a small diagram: data flow, state transition, contention window, queue path, replica path, or consensus path.
+6. Write the diagnosis in your own words: risk, invariant, evidence, reference mechanism, and remaining risk.
+7. Treat code changes as optional experiments. If syntax or boilerplate is the only blocker, use Codex for that part after you understand the mechanism.
 
 ## Progression Map
 
@@ -66,15 +69,15 @@ The seed data creates one coherent Makai quest dataset: adventurers, coin pouche
 
 ## Definition of Done
 
-A level is done when you can:
+A level is done when a passing test file is no longer just green; you can explain why each important assertion exists. That means you can:
 
-- Reproduce the failure or pressure case with the tests or Postgres workload.
+- Reproduce the failure, unsafe path, or pressure case inside the passing tests or Postgres workload.
 - Name the promise Makai made to the player or operator.
 - Name the Makai state that changed: coin pouch, gate slot, key, shop checkout, dispatch, cache ward, shard route, mirror replica, or final-tower drill.
 - State the invariant in one sentence.
 - Point to evidence from a test, debugger session, SQL query, or workload row count.
 - Draw the smallest useful diagram of the state transition, data flow, or failure window.
-- Explain the mechanism that fixes or contains the issue.
+- Explain the reference mechanism that fixes, prevents, or contains the issue.
 - Explain what the mechanism does not solve.
 - Run the level tests and write a short diagnosis in your own words before reading any review notes.
 

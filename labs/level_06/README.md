@@ -23,6 +23,10 @@ LSM compaction and Raft majority commit. Practice reading state transitions, not
 | `exercises/gate_run_workload` | `uv run python -m pytest labs/level_06/tests/test_gate_run_workloads.py` |
 | `exercises/postgres_runner` | `uv run python -m pytest labs/level_06/tests/test_db_runner.py` |
 
+## How To Read The Passing Tests
+
+The tests should pass. Read this level as a synthesis drill: the workload proves the realm can be rebuilt and exercised, MiniLSM proves storage trade-offs, and ToyRaft proves majority commit boundaries. Green assertions are the evidence you use to write the final tower incident note.
+
 ## DB Commands
 
 ```bash
@@ -42,6 +46,7 @@ After the workload, verify six Makai schemas exist, no legacy schemas remain, po
 
 - [ ] I rebuilt the local database with reset, migrate, seed, workload, and status commands.
 - [ ] I traced `sdl-db` runner behavior, the in-memory workload, MiniLSM, and ToyRaft from tests to implementation.
+- [ ] I can explain why a passing synthesis test still represents operational risk and coordination limits.
 - [ ] I can diagram the full gate-run day across ledger, reservation, checkout, outbox, queue, cache, shard, replica, and final-tower state.
 - [ ] I can point to workload evidence that schemas exist, legacy schemas are gone, pouch totals survived, and async rows were produced.
 - [ ] I can explain LSM compaction using Makai write pressure and name the read/write trade-off.
@@ -51,11 +56,11 @@ After the workload, verify six Makai schemas exist, no legacy schemas remain, po
 
 ## Your write-up
 
-- What failed or degraded?
+- Which operational risk, degradation, or coordination limit did the passing test expose?
 - What final-tower state changed?
 - What invariant or coordination rule mattered?
 - What evidence did the debugger, test, or SQL output show?
-- What mechanism fixes or contains it?
+- What reference mechanism fixes or contains it?
 - What does this still not solve?
 
 ## Rubric

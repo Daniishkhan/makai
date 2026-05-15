@@ -2,7 +2,7 @@
 
 Scenario: Mirror realms count final-tower events while partitions come and go. The changed state is replica-local counters, and the promise is eventual convergence for data that is safe to merge.
 
-Prove it with the test: merge increments and decrements, show convergence, and explain why exclusive gate ownership is not this kind of data.
+Read the passing test as proof: it merges increments and decrements, shows convergence, and explains why exclusive gate ownership is not this kind of data.
 
 Run:
 

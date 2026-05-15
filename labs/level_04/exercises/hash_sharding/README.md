@@ -2,7 +2,7 @@
 
 Scenario: Adventurer and shop keys need routes before one shard becomes the only crowded gate. The changed state is key-to-shard assignment, and the promise is predictable routing that does not replace correctness constraints.
 
-Prove it with the test: inspect distribution, calculate movement when capacity changes, and call out hot-key risk.
+Read the passing test as proof: it inspects distribution, calculates movement when capacity changes, and calls out hot-key risk.
 
 Run:
 

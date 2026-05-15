@@ -2,7 +2,7 @@
 
 Scenario: The Gatehouse API blurs adventurers, gate runs, passage slots, and key reservations, so a key claim can appear to mutate the wrong owner. The changed state needs a clear resource boundary, and the promise is that every transition has one authoritative home.
 
-Prove it with the test: model the resources so the API names the owner of each state change, then explain which uniqueness rule still needs database enforcement.
+Read the passing test as proof: it models the resources so the API names the owner of each state change, then leaves you to explain which uniqueness rule still needs database enforcement.
 
 Run:
 

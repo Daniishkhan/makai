@@ -20,6 +20,10 @@ Maps, ledgers, and invariant scans. Build the habit of deriving totals from stat
 | --- | --- |
 | `exercises/ledger_transfer` | `uv run python -m pytest labs/level_01/tests` |
 
+## How To Read The Passing Tests
+
+The tests should pass. Read `test_naive_transfer_can_lose_money_after_crash` as the incident evidence: the unsafe path debits Ava before the crash and leaves Makai with missing value. Then read the transaction tests as the reference proof that debit, credit, transfer row, and ledger rows now succeed or roll back together.
+
 ## DB Commands
 
 ```bash
@@ -35,6 +39,7 @@ Run `uv run sdl-db workload --iterations 50`, then compare `SUM(balance_cents)` 
 ## Definition of Done
 
 - [ ] I traced `naive_transfer_without_transaction` and `transfer` against the tests.
+- [ ] I can explain why the naive-path test passes while still proving a real production risk.
 - [ ] I can diagram the debit, credit, transfer row, ledger rows, transaction boundary, and crash window.
 - [ ] I can name the money-conservation invariant and point to balance or ledger evidence.
 - [ ] I can explain how rollback restores atomicity after a crash or insufficient funds.
@@ -43,11 +48,11 @@ Run `uv run sdl-db workload --iterations 50`, then compare `SUM(balance_cents)` 
 
 ## Your write-up
 
-- What failed?
+- Which unsafe path or crash window did the passing test expose?
 - What coin-pouch or ledger state changed?
 - What invariant broke?
 - What evidence did the debugger, test, or SQL output show?
-- What mechanism fixes it?
+- What reference mechanism fixes it?
 - What does this still not solve?
 
 ## Rubric
