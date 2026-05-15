@@ -22,7 +22,9 @@ class BoundedQueue(Generic[T]):
     def enqueue(self, item: T) -> bool:
         if len(self._items) >= self.capacity:
             if self.overflow_policy == "reject_new":
-                return False
+                # Mission starter bug: reject-new should signal overload
+                # without mutating queued work.
+                self._items.popleft()
             if self.overflow_policy == "drop_oldest":
                 self._items.popleft()
             else:
