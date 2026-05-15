@@ -138,57 +138,58 @@ def transfer(
     if amount_cents <= 0:
         raise ValueError("amount must be positive")
 
-    with conn.transaction():
-        from_balance = balance(conn, from_account_id)
-        if from_balance < amount_cents:
-            raise InsufficientFunds("source account does not have enough balance")
+    # Mission starter bug: these writes are not wrapped in a transaction, so
+    # a crash can leave Makai with a durable debit and no matching credit.
+    from_balance = balance(conn, from_account_id)
+    if from_balance < amount_cents:
+        raise InsufficientFunds("source account does not have enough balance")
 
-        row = conn.execute(
-            """
-            INSERT INTO transfers (
-                from_account_id, to_account_id, amount_cents, status
-            )
-            VALUES (%s, %s, %s, 'pending')
-            RETURNING id
-            """,
-            (from_account_id, to_account_id, amount_cents),
-        ).fetchone()
-        transfer_id = int(row["id"])
+    row = conn.execute(
+        """
+        INSERT INTO transfers (
+            from_account_id, to_account_id, amount_cents, status
+        )
+        VALUES (%s, %s, %s, 'pending')
+        RETURNING id
+        """,
+        (from_account_id, to_account_id, amount_cents),
+    ).fetchone()
+    transfer_id = int(row["id"])
 
-        conn.execute(
-            "UPDATE accounts SET balance_cents = balance_cents - %s WHERE id = %s",
-            (amount_cents, from_account_id),
-        )
+    conn.execute(
+        "UPDATE accounts SET balance_cents = balance_cents - %s WHERE id = %s",
+        (amount_cents, from_account_id),
+    )
 
-        if fail_after_debit:
-            raise RuntimeError("simulated crash after debit")
+    if fail_after_debit:
+        raise RuntimeError("simulated crash after debit")
 
-        conn.execute(
-            "UPDATE accounts SET balance_cents = balance_cents + %s WHERE id = %s",
-            (amount_cents, to_account_id),
+    conn.execute(
+        "UPDATE accounts SET balance_cents = balance_cents + %s WHERE id = %s",
+        (amount_cents, to_account_id),
+    )
+    conn.execute(
+        """
+        INSERT INTO ledger_entries (
+            transfer_id, account_id, direction, amount_cents
         )
-        conn.execute(
-            """
-            INSERT INTO ledger_entries (
-                transfer_id, account_id, direction, amount_cents
-            )
-            VALUES
-                (%s, %s, 'debit', %s),
-                (%s, %s, 'credit', %s)
-            """,
-            (
-                transfer_id,
-                from_account_id,
-                amount_cents,
-                transfer_id,
-                to_account_id,
-                amount_cents,
-            ),
-        )
-        conn.execute(
-            "UPDATE transfers SET status = 'completed' WHERE id = %s",
-            (transfer_id,),
-        )
+        VALUES
+            (%s, %s, 'debit', %s),
+            (%s, %s, 'credit', %s)
+        """,
+        (
+            transfer_id,
+            from_account_id,
+            amount_cents,
+            transfer_id,
+            to_account_id,
+            amount_cents,
+        ),
+    )
+    conn.execute(
+        "UPDATE transfers SET status = 'completed' WHERE id = %s",
+        (transfer_id,),
+    )
 
     return TransferResult(
         transfer_id=transfer_id,
